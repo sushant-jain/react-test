@@ -2,6 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import {Grid,Row,Form, FormGroup, ControlLabel, FormControl, HelpBlock,Col,Checkbox} from 'react-bootstrap'
+
+function FieldGroup({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+     <Grid>
+     <Row><Col sm={2}> 
+      <ControlLabel>{label}</ControlLabel>
+      </Col>
+      <Col sm={10}>
+      	<FormControl {...props} />
+      	</Col>	</Row>
+      {help && <HelpBlock>{help}</HelpBlock>}
+      </Grid>
+    </FormGroup>
+  );
+}
 
 class Reservation extends React.Component {
   constructor(props) {
@@ -66,166 +83,177 @@ class Reservation extends React.Component {
     event.preventDefault();
   }
 
+  
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Is going:
-          <input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Number of guests:
-          <input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-        	BName:
-        	<input
+    <center>
+      <Form  horizontal onSubmit={this.handleSubmit}>
+       <Grid >
+       { // <label>
+        //   Is going:
+        //   <input
+        //     name="isGoing"
+        //     type="checkbox"
+        //     checked={this.state.isGoing}
+        //     onChange={this.handleInputChange} />
+        // </label>
+        // <br />
+        // <label>
+        //   Number of guests:
+        //   <input
+        //     name="numberOfGuests"
+        //     type="number"
+        //     value={this.state.numberOfGuests}
+        //     onChange={this.handleInputChange} />
+        // </label>
+        // <br />
+        // <label>
+        // 	BName:
+        // 	<input
+        // 	name="bName"
+        // 	type="text"
+        // 	value={this.state.bName}
+        // 	onChange={this.handleInputChange}/>
+        // </label>
+       }
+        <FieldGroup
+        	id="bName"
+        	label="bName"
         	name="bName"
         	type="text"
+        	placeholder="Enter Name"
         	value={this.state.bName}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	Bphone:
-        	<input
+        	onChange={this.handleInputChange}
+        	/>
+		
+        <FieldGroup
+        	id="bPhone"
+        	label="bPhone"
         	name="bPhone"
         	type="text"
+        	placeholder="Enter phone"
         	value={this.state.bPhone}
         	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	Address:
-        	<input
+       
+        <FieldGroup
+        	id="Address"
+        	label="Address"
         	name="Address"
         	type="text"
+        	placeholder="Enter Address"
         	value={this.state.Address}
         	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	Landmark:
-        	<input
+        
+       
+        <FieldGroup
+        	id="Landmark"
+        	label="Landmark"
         	name="Landmark"
         	type="text"
+        	placeholder="Enter Landmark"
         	value={this.state.Landmark}
         	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	Days:
-        	<input
+        
+       
+        <FieldGroup
+        	id="Days"
+        	label="Days"
         	name="Days"
         	type="text"
         	value={this.state.Days}
+        	placeholder="Enter Days"
         	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	AC:
-        	<input
-        	name="AC"
-        	type="checkbox"
-        	value={this.state.AC}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	Sex:
-        	<select 
-        	name="sex"
-        	value={this.state.sex}
-        	onChange={this.handleInputChange}>
-        	<option value="M">Male</option>
-        	<option value="F">Female</option>
-        	<option value = "U">Unisex</option>
-        	</select>
-        </label>
-        <br/>
-        <label>
-        	kids friendly:
-        	<input
-        	name="kids"
-        	type="checkbox"
-        	value={this.state.kids}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	wifi:
-        	<input
-        	name="wifi"
-        	type="checkbox"
-        	value={this.state.wifi}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/><label>
-        	TV:
-        	<input
-        	name="tv"
-        	type="checkbox"
-        	value={this.state.tv}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/><label>
-        	music:
-        	<input
-        	name="music"
-        	type="checkbox"
-        	value={this.state.music}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-          Number of chairs:
-          <input
-            name="numberOfChairs"
-            type="number"
-            value={this.state.numberOfChairs}
+        <FieldGroup
+          id="Number of chairs"
+          label="Number of chairs"
+          name="numberOfChairs"
+          type="number"
+           value={this.state.numberOfChairs}
             onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-        	Certification:
-        	<input
+        <FieldGroup
+        	id="Certification"
+        	label="Certification"
         	name="Certification"
         	type="text"
         	value={this.state.Certification}
         	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	maleService:
-        	<input
+        
+
+        <FormGroup>
+        <Checkbox inline
+        	id="AC"
+    		label="AC"
+        	name="AC"
+        	type="checkbox"
+        	value={this.state.AC}
+        	onChange={this.handleInputChange}>AC</Checkbox>
+        
+     
+        { "  "}
+        <Checkbox inline
+        	id="kids friendly"
+        	label="Kids friendly"
+        	name="kids"
+        	type="checkbox"
+        	value={this.state.kids}
+        	onChange={this.handleInputChange}>Kids friendly</Checkbox>
+        	{"  "}
+        <Checkbox inline
+        	name="wifi"
+        	type="checkbox"
+        	value={this.state.wifi}
+        	onChange={this.handleInputChange}>Wifi</Checkbox>
+        	{"  "}
+
+        
+      
+        
+        
+        <Checkbox inline
+        	name="tv"
+        	type="checkbox"
+        	value={this.state.tv}
+        	onChange={this.handleInputChange}>TV</Checkbox>
+        	{"  "}
+        <Checkbox inline
+		   	name="music"
+        	type="checkbox"
+        	value={this.state.music}
+        	onChange={this.handleInputChange}>Music</Checkbox>
+        	</FormGroup>
+        	<FormGroup>
+        	<Checkbox inline
         	name="maleService"
         	type="checkbox"
         	value={this.state.maleService}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <label>
-        	femaleService:
-        	<input
-        	name="tv"
+        	onChange={this.handleInputChange}>Male Service</Checkbox>
+        	{"  "}
+        <Checkbox inline
+        	name="femaleService"
         	type="checkbox"
         	value={this.state.femaleService}
-        	onChange={this.handleInputChange}/>
-        </label>
-        <br/>
-        <input type="submit" value="Submit"/>
+        	onChange={this.handleInputChange}>Female Service</Checkbox>
+        	{"  "}
+        </FormGroup>
+                
+        
+        
 
-      </form>
+      <FormGroup controlId="formControlsSelect">
+      <ControlLabel>Sex</ControlLabel>
+      <FormControl componentClass="select" 
+      	value={this.state.sex} 
+      	onChange={this.handleInputChange}>
+        <option value="M">Male</option>
+        	<option value="F">Female</option>
+        	<option value = "U">Unisex</option>
+      </FormControl>
+    </FormGroup>
+        
+        <input type="submit" value="Submit"/>
+        </Grid>
+      </Form>
+      </center>
     );
   }
 }
